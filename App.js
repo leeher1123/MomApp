@@ -3,12 +3,15 @@ import * as React from 'react';
 import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SignUp from './src/pages/SignUp';
+import SignIn from './src/pages/SignIn';
 
 function HomeScreen({navigation}) {
-  const onClick = () => {
+  const signUpHandler = () => {
     navigation.navigate('SignUp');
+  };
+  const signInHandler = () => {
+    navigation.navigate('SignIn');
   };
 
   return (
@@ -24,22 +27,16 @@ function HomeScreen({navigation}) {
       <View style={styles.btnContainer}>
         <Pressable
           style={[styles.commonBtn, {backgroundColor: '#18f'}]}
-          onPress={onClick}>
+          onPress={signUpHandler}>
           <Text style={{color: '#fff'}}>회원가입</Text>
         </Pressable>
-        <Pressable style={[styles.commonBtn, styles.signInBtn]}>
+        <Pressable
+          style={[styles.commonBtn, styles.signInBtn]}
+          onPress={signInHandler}>
           <Text style={{color: '#111'}}>로그인</Text>
         </Pressable>
       </View>
     </>
-  );
-}
-
-function LoginScreen() {
-  return (
-    <View>
-      <Text>로그인페이지</Text>
-    </View>
   );
 }
 
@@ -51,6 +48,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignIn" component={SignIn} />
       </Stack.Navigator>
     </NavigationContainer>
   );
