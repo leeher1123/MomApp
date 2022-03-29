@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Alert,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, TextInput, Pressable, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {setUser} from '../slices/user';
 
 function SignIn() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +16,7 @@ function SignIn() {
   };
 
   const onSubmit = () => {
-    Alert.alert('알림', '안녕~');
+    dispatch(setUser());
   };
 
   const canGoNext = email && password;
